@@ -1,43 +1,40 @@
+//Pacote para organizar as classes
 package model.bean;
 
-/**
- *
- * @author ProfAlexandre
- */
 public class Usuario {
-    
-    //Criando variaveis globais
+
+    //Variaveis que serão usadas na cosntrução de construtores e métodos
     private int id;
     private String login;
     private String senha;
     private String status;
     private String tipo;
 
-    //Criando um objeto que seta o id  
+    //Construtor que guarda o id do usário
     public Usuario(int id) {
         this.id = id;
     }
 
-    //Criando um objeto que seta o login  
+    //Construtor que guarda o login do usário
     public Usuario(String login) {
         this.login = login;
     }
 
-    //Criando um objeto que seta o login e senha  
+    //Construtor que guarda o login e a senha do usário
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
     }
 
-    //Criando um objeto que seta o login, senha, status e tipo   
+    //Construtor que guarda o login, a senha, os status e o tipo do usário
     public Usuario(String login, String senha, String status, String tipo) {
         this.login = login;
         this.senha = senha;
         this.status = status;
         this.tipo = tipo;
     }
-    
-    //Criando um objeto que seta o id, o login, a senha, o status e o tipo  
+
+    //Construtor que guarda o id, o login, a senha, os status e o tipo do usário
     public Usuario(int id, String login, String senha, String status, String tipo) {
         this.id = id;
         this.login = login;
@@ -46,63 +43,58 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    //Criando um objeto que retorna o id  
+    //Método que retorna o id do usuário
     public int getId() {
         return id;
     }
 
-    //Criando um objeto que seta o id  
+    //Método que guarda o id do usuário
     public void setId(int id) {
         this.id = id;
     }
-    
-    //Criando um objeto que retorna o login  
+
+    //Método que retorna o login do usuário
     public String getLogin() {
         return login;
     }
 
-    //Criando um objeto que seta o login  
+    //Método que guarda o login do usuário
     public void setLogin(String login) {
         this.login = login;
     }
 
-    //Criando um objeto que retorna a senha 
+    //Método que retorna a senha do usuário
     public String getSenha() {
         return senha;
     }
 
-    //Criando um objeto que seta a senha
+    //Método que guarda a senha do usuário
     public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    //Criando um objeto que retorna o status  
+    //Método que retorna os status do usuário
     public String getStatus() {
         return status;
     }
 
-    //Criando um objeto que seta o status  
+    //Método que guarda os status do usuário
     public void setStatus(String status) {
         this.status = status;
     }
 
-    //Criando um objeto que retorna o tipo  
+    //Método que retorna o tipo do usuário
     public String getTipo() {
         return tipo;
     }
 
-    //Criando um objeto que seta o tipo  
+    //Método que guarda o tipo do usuário
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    //Criando um objeto que retorna os dados globais setados 
     @Override
     public String toString() {
         return "Usuario{" + "id=" + id + ", login=" + login + ", senha=" + senha + ", status=" + status + ", tipo=" + tipo + '}';
     }
-    
-    
-    
-    
 }

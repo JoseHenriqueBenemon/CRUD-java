@@ -1,54 +1,84 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Pacote para organizar as classes
 package controller;
 
-//import's
+//Importando as classes
 import java.util.List;
 import model.bean.Usuario;
 import model.dao.DaoUsuario;
+import java.sql.SQLException;
 
-/**
- *
- * @author ProfAlexandre
- */
 public class ControllerUsuario {
     
-    //Pegando uma classe do arquivo DaoUsuario 
-    DaoUsuario daoUsu;
+    //Definindo uma variavel do tipo DaoUsuario com um valor padrão nulo
+    DaoUsuario daoUsu = null;
     
-    //Criando um objeto que pede para excluir o usuario
-    public Usuario excluir(Usuario u) {
-        return daoUsu.excluir(u);
-    }
-    
-    //Criando um objeto que pede para altera o usuario
-    public Usuario alterar(Usuario u) {
-        return daoUsu.alterar(u);
-    }
-
-    //Criando um objeto que pede para lista o(s) usuario(s)
-    public List<Usuario> listar(Usuario u) {
-        return daoUsu.listar(u);
-    }
-
-    //Criando um objeto que pede para busca o usuario
-    public Usuario buscar(Usuario u) {
-        return daoUsu.buscar(u);
-    }
-
-    //Criando um objeto que pede para insere o usuario
-    public Usuario inserir(Usuario u) {
+    //método exluir() para chamar o método excluir() no DaoUsuario
+    public Usuario excluir(Usuario usu) throws SQLException, ClassNotFoundException {
+        //Instanciando a classe DaoUsuario
         daoUsu = new DaoUsuario();
-        return daoUsu.inserir(u);
+        
+        //Retornando os dados que serão pegos no método excluir() do DaoUsuario
+        return daoUsu.excluir(usu);
     }
 
-    //Criando um objeto que pede para valida o usuario
-    public Usuario valida(Usuario u) {
+    //método alterar() para chamar o método alterar() no DaoUsuario
+    public Usuario alterar(Usuario usu) throws SQLException, ClassNotFoundException {
+        //Instanciando a classe DaoUsuario
         daoUsu = new DaoUsuario();
-        return daoUsu.valida(u);
+        
+        //Retornando os dados que serão pegos no método alterar() do DaoUsuario
+        return daoUsu.alterar(usu);
+    }
+
+    //método listar() para chamar o método listar() no DaoUsuario
+    public List<Usuario> listar(Usuario usu) throws SQLException, ClassNotFoundException {
+        //Instanciando a classe DaoUsuario
+        daoUsu = new DaoUsuario();
+        
+        //Retornando os dados que serão pegos no método listar() do DaoUsuario
+        return daoUsu.listar(usu);
+    }
+
+    //método buscar() para chamar o método buscar() no DaoUsuario
+    public Usuario buscar(Usuario usu) throws SQLException, ClassNotFoundException {
+        //Instanciando a classe DaoUsuario
+        daoUsu = new DaoUsuario();
+        
+        //Retornando os dados que serão pegos no método buscar() do DaoUsuario
+        return daoUsu.buscar(usu);
+    }
+
+    //método inserir() para chamar o método inserir() no DaoUsuario
+    public Usuario inserir(Usuario usu) throws SQLException, ClassNotFoundException {
+        //Instanciando a classe DaoUsuario
+        daoUsu = new DaoUsuario();
+        
+        //Retornando os dados que serão pegos no método inserir() do DaoUsuario
+        return daoUsu.inserir(usu);
+    }
+
+    //método validar() para chamar o método validar() no DaoUsuario
+    public boolean validar(Usuario u) throws SQLException, ClassNotFoundException {
+        //Criando uma variavel booleana para verificar se o usuário foi validado
+        boolean validado= false;
+
+        //Instanciando a classe DaoUsuario
+        daoUsu = new DaoUsuario();
+        
+        //Guardando o conteúdo que será retornado do DaoUsuario usando o método validar()
+        Usuario usuSaida = daoUsu.validar(u);
+
+        //verificando se o retorno não é vazio
+        if(usuSaida != null){
+            //Verificando se as variaveis de entrada são iguais as variaveis de saida  
+            if(u.getLogin().equals(usuSaida.getLogin()) && u.getSenha().equals(usuSaida.getSenha())) {
+                //Mudando a variavel para mostrar que o usuário foi validado
+                validado = true;
+            }
+        }
+
+        //retornando a validação do usuário
+        return validado;
     }
     
 }

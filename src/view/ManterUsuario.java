@@ -1,92 +1,179 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Pacote para organizar as classes
 package view;
 
-//import's
+//Importando as classes
 import javax.swing.JOptionPane;
 import controller.ControllerUsuario;
 import model.bean.Usuario;
+import java.sql.SQLException;
+import java.util.List;
 
-/**
- *
- * @author ProfAlexandre
- */
 public class ManterUsuario {
     
-    //pegando a classe do arquivo ControllerUsuario
+    //Definindo uma variavel do tipo ControllerUsuario
     static ControllerUsuario contUsu;
 
-    //Criando a classe excluir
-    public static void excluir() {
-        
+    public static void excluir() throws SQLException, ClassNotFoundException {
+        //Criando e setando valor na variavel
+        int id = Integer.parseInt(JOptionPane.showInputDialog("ID"));
+
+        //Instanciando a classe Usuario usando um construtor
+        Usuario usuEntrada = new Usuario(id);
+
+        //Instanciando a classe ControllerUsuario
+        contUsu = new ControllerUsuario();
+
+        //Guardando o conteúdo que será retornado do ControllerUsuario usando o método excluir()
+        Usuario usuSaida = contUsu.excluir(usuEntrada);
+
+        //Mostrando para o usuário o resultado da pesquisa
+        JOptionPane.showMessageDialog(null, usuSaida.toString());
+
+        //Voltando para o menu
+        menu();
     }
 
-    //Criando a classe alterar
-    public static void alterar() {
-        
-    }
-
-    ////Criando a classe listar
-    public static void listar() {
-        
-    }
-
-    //Criando a classe buscar
-    public static void buscar() {
-        
-    }
-
-    //Criando a classe inserir
-    public static void inserir() {
-        //pegando valores e inserindo em variaveis
+    public static void alterar() throws SQLException, ClassNotFoundException {
+        //Criando e setando valores nas variaveis
+        int id = Integer.parseInt(JOptionPane.showInputDialog("ID"));
         String login = JOptionPane.showInputDialog("Login");
         String senha = JOptionPane.showInputDialog("Senha");
         String status = JOptionPane.showInputDialog("Status");
         String tipo = JOptionPane.showInputDialog("Tipo");
 
-        //instanciando a classe Usuario
-        Usuario usuEntrada = new Usuario(login, senha, status, tipo);
-        
-        //inicializnado a classe ControllerUsuario
+        //Instanciando a classe Usuario usando um construtor
+        Usuario usuEntrada = new Usuario(id,login, senha, status, tipo);
+
+        //Instanciando a classe ControllerUsuario
         contUsu = new ControllerUsuario();
 
-        //Inicialisnado a classe
-        Usuario usuSaida = contUsu.inserir(usuEntrada);
+        //Guardando o conteúdo que será retornado do ControllerUsuario usando o método alterar()
+        Usuario usuSaida = contUsu.alterar(usuEntrada);
 
-        //Mostrando o resultado da inserção na tela por interface
+        //Mostrando para o usuário o resultado da pesquisa
         JOptionPane.showMessageDialog(null, usuSaida.toString());
+
+        //Voltando para o menu
+        menu();
+    }
+
+    public static void listar() throws SQLException, ClassNotFoundException {
+        //Criando e setando valor na variavel
+        String login = JOptionPane.showInputDialog("Login");
+
+        //Instanciando a classe Usuario usando um construtor
+        Usuario usuEntrada = new Usuario(login);
+
+        //Instanciando a classe ControllerUsuario
+        contUsu = new ControllerUsuario();
+
+        //Guardando o conteúdo que será retornado do ControllerUsuario usando o método listar()
+        List<Usuario> listaUsuSaida = contUsu.listar(usuEntrada);
+
+        //Guardando os valores dentro da lista em variaveis separadas
+        for(Usuario usu : listaUsuSaida) {
+            //Mostrando para o usuário o resultado da pesquisa
+            JOptionPane.showMessageDialog(null, usu.toString());
+        }
+
+        //Voltando para o menu
+        menu();
+    }
+
+    public static void buscar() throws SQLException, ClassNotFoundException {
+        //Criando e setando valor na variavel
+        int id = Integer.parseInt(JOptionPane.showInputDialog("ID"));
+
+        //Instanciando a classe Usuario usando um construtor
+        Usuario usuEntrada = new Usuario(id);
+
+        //Instanciando a classe ControllerUsuario
+        contUsu = new ControllerUsuario();
+
+        //Guardando o conteúdo que será retornado do ControllerUsuario usando o método buscar()
+        Usuario usuSaida = contUsu.buscar(usuEntrada);
+
+        //Mostrando para o usuário o resultado da pesquisa
+        JOptionPane.showMessageDialog(null, usuSaida.toString());
+
+        //Voltando para o menu
+        menu();
+    }
+
+    public static void inserir() throws SQLException, ClassNotFoundException {
+        //Criando e setando valores nas variaveis
+        String login = JOptionPane.showInputDialog("Login");
+        String senha = JOptionPane.showInputDialog("Senha");
+        String status = JOptionPane.showInputDialog("Status");
+        String tipo = JOptionPane.showInputDialog("Tipo");
+
+        //Instanciando a classe Usuario usando um construtor
+        Usuario usuEntrada = new Usuario(login, senha, status, tipo);
+
+        //Instanciando a classe ControllerUsuario
+        contUsu = new ControllerUsuario();
+
+        //Guardando o conteúdo que será retornado do ControllerUsuario usando o método inserir()
+        Usuario usuSaida = contUsu.inserir(usuEntrada);
         
+        //Mostrando para o usuário o resultado da pesquisa
+        JOptionPane.showMessageDialog(null, usuSaida.toString());
+
+        //Voltando para o menu
+        menu();
     }
     
-    public static boolean valida() {
-        //variavel de validação
+    public static boolean valida() throws SQLException, ClassNotFoundException {
+        //Criando e setando valores nas variaveis
         boolean validado = false;
-
-        //pegando valores e inserindo em variaveis
         String login = JOptionPane.showInputDialog("Login");
         String senha = JOptionPane.showInputDialog("Senha");
 
-        //instanciando a classe Usuario
+        //Instanciando a classe Usuario usando um construtor
         Usuario usuEntrada = new Usuario(login, senha);
-        
-        //inicializnado a classe ControllerUsuario
+
+        //Instanciando a classe ControllerUsuario
         contUsu = new ControllerUsuario();
 
-        //Inicialisnado a classe
-        Usuario usuSaida = contUsu.valida(usuEntrada);
+        //Guardando o conteúdo que será retornado do ControllerUsuario usando o método validar()
+        validado = contUsu.validar(usuEntrada);
 
-        //Mostrando o resultado da inserção na tela por interface
-        JOptionPane.showMessageDialog(null, usuSaida.toString());
+        //Mostrando para o usuário o resultado da pesquisa
+        JOptionPane.showMessageDialog(null, "Usuario = " + validado);
 
-        //verificando se o usuario é um ADM
-        if(usuSaida.getTipo().equals("ADM")) { //caso sim ele retorna que o usuario é válido
-            validado = true;
-        }
+        //retornando o resultado da validação do usuário
         return validado;
     }
     
-    
+    public static void menu() throws SQLException, ClassNotFoundException {
+        //Criando e setando a variavel para ser usada no menu 
+        int operacao = Integer.parseInt(JOptionPane.showInputDialog("0 - Sair \n 1 - Inserir \n 2 - Alterar \n 3 - Excluir \n 4 - Buscar \n 5 - Listar"));
+        switch (operacao) {
+            case 0:
+               int sair = JOptionPane.showConfirmDialog(null,"Deseja Sair");
+               System.out.println("Valor de Sair = " + sair);
+               if(sair > 0) menu();
+               break;
+            case 1:
+               inserir();
+               break;
+           case 2:
+               alterar();
+               break;
+           case 3:
+               excluir();
+               break;
+           case 4:
+               buscar();
+               break;
+           case 5:
+               listar();
+               break;
+           default:
+               JOptionPane.showMessageDialog(null,"Erro opcao invalida");
+               menu();
+               break;
+        }
+    }
+   
 }
