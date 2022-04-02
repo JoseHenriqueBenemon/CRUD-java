@@ -15,8 +15,8 @@ public class Conexao {
 
             //variaveis da conexão com o banco de dados
             String url ="jdbc:mysql://localhost:3306/atv_pdm";
-            String usuario = "root";
-            String senha = "58318012J@sek";
+            String usuario = "";
+            String senha = "";
 
             //retornando a conxeão com banco de dados, caso dê certo
             return DriverManager.getConnection(url,usuario,senha);
